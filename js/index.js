@@ -16,6 +16,15 @@ tinymce.init({
   });
 
   const pokemones = []; //definir arreglo en js
+  const eliminar = function(){
+        //1. Saber que el boton funcione
+        //2. Sacar el nmero del boton
+        let nro = this.nro;
+        //3- Eliminar el pokemon de la lista
+        pokemones.splice(nro,1);
+        //4 Recargar tabla
+        cargarTabla();
+  }
   
   const cargarTabla = () =>{
     //1. referncia a la tabla
@@ -38,11 +47,43 @@ tinymce.init({
 
       tdNombre.innerText = p.nombre;
       //TODO: Mostrar el icono y no el numero
-      tdTipo.innerText = p.tipo;
-      //TODO: Esto no va a funcionar
+      let icono = document.createElement("i");
+      if(p.tipo == "1"){
+        //Agregar icono agua
+        //<i class="fas fa-tint"></i>
+        icono.classList.add("fas","fa-tint","text-primary","fa-2x")
+      } else if(p.tipo == "2"){
+        //Agregar icono fuego
+        //<i class="fas fa-fire"></i>
+        icono.classList.add("fas","fa-fire","text-danger","fa-2x")
+      } else if(p.tipo == "3"){
+        //Agrregar planta 
+        //<i class="fab fa-envira"></i>
+        icono.classList.add("fab","fa-envira","text-success","fa-2x")
+      }else{
+        //Agregar electrico
+        //<i class="fas fa-bolt"></i>
+        icono.classList.add("fas","fa-bold","text-warning","fa-2x")
+      }
+      tdTipo.classList.add("text-center");
+      tdTipo.appendChild(icono);
+      
       tdDescripcion.innerHTML = p.descripcion;
       tdNro.innerText = i + 1;
-      //TODO: Como agrego un boton para las acciones
+
+      //Creo boton
+      let boton = document.createElement("button");
+      boton.nro = i; //Guardar cualquier cosa
+      boton.addEventListener("click",eliminar);
+      //le agrego el texto al boton
+      boton.innerText = "Enviar al profesor oak";
+      //Hago que el boton sea rojo
+      boton.classList.add("btn","btn-danger");
+      tdAcciones.classList.add("text-center");
+
+      //Agrego el boton al td
+      tdAcciones.appendChild(boton);
+
       tr.appendChild(tdNro);
       tr.appendChild(tdNombre);
       tr.appendChild(tdTipo);
@@ -67,7 +108,7 @@ tinymce.init({
       pokemon.tipo = tipo;
       pokemones.push(pokemon);
       cargarTabla();
-      Swal.fire("Pokemon Registrado");
+      Swal.fire("Registro Exitoso","Pokemon Registrado","info");
   });
   
   
