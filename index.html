@@ -32,19 +32,26 @@
                     </div>
                     <div class="card-body">
                        <form id="pokemon-form">
-                           <div class="mb-3">
+                           <div class="mb-3 has-validation">
                                <label for="nombre-text" class="form-label">Nombre</label>
-                               <input type="text" id="nombre-txt" class="form-control">
+                               <input type="text" id="nombre-txt" class="form-control ">
+                               <div class="invalid-feedback">
+                                   Por favor ingrese nombre
+                               </div>
                            </div>
-                           <div class="mb-3">
+                           <div class="mb-3 has-validacion">
                                <label for="descripcion-txt" class="form-label">Descripcion</label>
-                               <textarea  id="descripcion-txt"></textarea>
+                               <textarea  id="descripcion-txt" ></textarea>
+                               <div class="invalid-feedback">
+                                Por favor ingrese descripcion
+                            </div>
                            </div>
                            <div class="mb-3">
                                 <label for="legendario-rb" >Legendarios</label>
                                 <div class="form-chek form-check-inline">
                                     <input type="radio" name="legendario-rb" 
                                     class="form-check-input" 
+                                    checked
                                     id="legendario-si">
                                     <label for="legendario-si" class="form-check-label">Si</label>
                                 </div>
@@ -68,7 +75,8 @@
                                          <button type="submit" class="btn btn-success">Registrar</button>
                                     </div>
                                     <div class="col text-end">
-                                        <button type="button" class="btn btn-info">Limpiar</button>
+                                        <!-- Para que limpie tiene que ser boton tipo button -->
+                                        <button type="button" id = "limpiar-btn" class="btn btn-info">Limpiar</button>
                                     </div>
                                 
                                 </div>
